@@ -11,7 +11,8 @@ const api = {
 
     // Convertimos cada línea en un objeto Restaurant, asegúrate de que los campos no posean `,`
     const restaurants: Restaurant[] = data.map((row) => {
-      const [id, name, description, address, score, ratings, image] = row.split(',')
+      const [id, name, description, address, score, ratings, image] =
+        row.split(',')
 
       return {
         id,

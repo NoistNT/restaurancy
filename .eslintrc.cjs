@@ -26,7 +26,7 @@ module.exports = {
     'prettier/prettier': [
       'warn',
       {
-        printWidth: 100,
+        printWidth: 80,
         trailingComma: 'none',
         tabWidth: 2,
         semi: false,
@@ -80,6 +80,10 @@ module.exports = {
     '@typescript-eslint/require-await': 'off',
     '@typescript-eslint/no-floating-promises': 'off',
     '@typescript-eslint/no-confusing-void-expression': 'off',
+    '@typescript-eslint/no-unsafe-assignment': 'off',
+    '@typescript-eslint/no-unsafe-argument': 'off',
+    '@typescript-eslint/no-unsafe-member-access': 'off',
+    '@typescript-eslint/no-unsafe-return': 'off',
     '@typescript-eslint/no-unused-vars': [
       'warn',
       {
@@ -88,6 +92,11 @@ module.exports = {
         argsIgnorePattern: '^_.*?$'
       }
     ],
+    '@typescript-eslint/consistent-type-imports': [
+      'warn',
+      { prefer: 'type-imports' }
+    ],
+    '@typescript-eslint/unbound-method': 'off',
     '@next/next/no-img-element': 'off',
     'jsx-a11y/no-static-element-interactions': 'off',
     'jsx-a11y/click-events-have-key-events': 'off'
