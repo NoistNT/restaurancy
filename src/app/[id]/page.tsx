@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 import api from '@/api'
 
-import Card from '../components/card'
+import Card from '../../components/card'
 
 export async function generateMetadata({
   params: { id }
