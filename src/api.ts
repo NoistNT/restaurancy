@@ -10,7 +10,7 @@ const api = {
     // { cache: 'no-store' } won't cache the data, it will revalidate data in every request
     // { next: { tags: ['restaurants'] }will revalidate every component that uses this tag
     // { next: { revalidate: 10 } } will revalidate 10 seconds after the first request
-    const [, ...data] = await fetch(URL, { next: { revalidate: 10 } })
+    const [, ...data] = await fetch(URL)
       .then((res) => res.text())
       .then((text) => text.split('\n'))
 

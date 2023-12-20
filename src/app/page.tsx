@@ -1,5 +1,5 @@
 import api from '@/api'
-import Card from '@/app/components/card'
+import Card from '@/components/card'
 
 export default async function Home() {
   const restaurants = await api.list()

@@ -1,9 +1,11 @@
 import type { Metadata } from 'next'
 
 import './globals.css'
-import Link from 'next/link'
+import NavBar from '@/components/NavBar'
 
-import Footer from './components/footer'
+import Footer from '../components/footer'
+
+import Providers from './Providers'
 
 export const metadata: Metadata = {
   title: 'Restaurancy',
@@ -19,11 +21,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="container m-auto grid min-h-screen grid-rows-[auto,1fr,auto] px-4">
-        <header className="text-xl font-bold leading-[3rem]">
-          <Link href="/">Restaurancy</Link>
-        </header>
-        <main className="py-8">{children}</main>
-        <Footer />
+        <Providers>
+          <NavBar />
+          <main className="py-8">{children}</main>
+          <Footer />
+        </Providers>
       </body>
     </html>
   )
