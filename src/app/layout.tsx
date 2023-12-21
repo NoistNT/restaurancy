@@ -20,10 +20,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="container m-auto grid min-h-screen grid-rows-[auto,1fr,auto] px-4">
+      <body>
         <Providers>
           <NavBar />
-          <main className="py-8">{children}</main>
+          <main className="m-auto grid min-h-screen max-w-[1500px] grid-rows-[auto,1fr,auto] px-4 py-8">
+            {children}
+          </main>
           <Footer />
         </Providers>
       </body>

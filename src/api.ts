@@ -1,46 +1,52 @@
 import type { Restaurant } from './types'
 
-import { URL } from './constants'
+import supabase from './app/api/supabase'
 
 const api = {
-  list: async (): Promise<Restaurant[]> => {
-    // Fetch data text-formatted from Google Sheets and split in lines
-    // Skip the first line to skip the header
+  list: async (name: string): Promise<Restaurant[]> => {
+    if (name) {
+      const restaurants = await api.search(name)
 
-    // { cache: 'no-store' } won't cache the data, it will revalidate data in every request
-    // { next: { tags: ['restaurants'] }will revalidate every component that uses this tag
-    // { next: { revalidate: 10 } } will revalidate 10 seconds after the first request
-    const [, ...data] = await fetch(URL)
-      .then((res) => res.text())
-      .then((text) => text.split('\n'))
+      return restaurants
+    }
 
-    // Convertimos cada línea en un objeto Restaurant, asegúrate de que los campos no posean `,`
-    const restaurants: Restaurant[] = data.map((row) => {
-      const [id, name, description, address, score, ratings, image] =
-        row.split(',')
+    const { data, error } = await supabase.from('restaurants').select('*')
 
-      return {
-        id,
-        name,
-        description,
-        address,
-        score: Number(score),
-        ratings: Number(ratings),
-        image
-      }
-    })
+    if (error instanceof Error) {
+      throw new Error(`Failed to fetch restaurants: ${error.message}`)
+    }
+
+    const restaurants = data as Restaurant[]
 
     return restaurants
   },
   fetch: async (id: Restaurant['id']): Promise<Restaurant> => {
-    const restaurants = await api.list()
-    const restaurant = restaurants.find((restaurant) => restaurant.id === id)
+    const { data: restaurant, error } = await supabase
+      .from('restaurants')
+      .select('*')
+      .eq('id', id)
 
-    if (!restaurant) {
-      throw new Error(`Restaurant with id ${id} not found`)
+    if (error instanceof Error || !restaurant) {
+      throw new Error(`Restaurant with id ${id} not found: ${error?.message}`)
     }
 
-    return restaurant
+    return restaurant[0]
+  },
+  search: async (name: string): Promise<Restaurant[]> => {
+    const { data, error } = await supabase
+      .from('restaurants')
+      .select('*')
+      .ilike('name', `%${name}%`)
+
+    if (error instanceof Error) {
+      throw new Error(
+        `${name} is not an affiliated restaurant yet. ${error.message}`
+      )
+    }
+
+    const restaurants = data as Restaurant[]
+
+    return restaurants
   }
 }
 
