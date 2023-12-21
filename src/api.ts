@@ -1,34 +1,16 @@
 import type { Restaurant } from './types'
 
-import { URL } from './constants'
+import supabase from './app/api/supabase'
 
 const api = {
   list: async (): Promise<Restaurant[]> => {
-    // Fetch data text-formatted from Google Sheets and split in lines
-    // Skip the first line to skip the header
+    const { data, error } = await supabase.from('restaurants').select('*')
 
-    // { cache: 'no-store' } won't cache the data, it will revalidate data in every request
-    // { next: { tags: ['restaurants'] }will revalidate every component that uses this tag
-    // { next: { revalidate: 10 } } will revalidate 10 seconds after the first request
-    const [, ...data] = await fetch(URL)
-      .then((res) => res.text())
-      .then((text) => text.split('\n'))
+    if (error instanceof Error) {
+      throw new Error(`Failed to fetch restaurants: ${error.message}`)
+    }
 
-    // Convertimos cada línea en un objeto Restaurant, asegúrate de que los campos no posean `,`
-    const restaurants: Restaurant[] = data.map((row) => {
-      const [id, name, description, address, score, ratings, image] =
-        row.split(',')
-
-      return {
-        id,
-        name,
-        description,
-        address,
-        score: Number(score),
-        ratings: Number(ratings),
-        image
-      }
-    })
+    const restaurants = data as Restaurant[]
 
     return restaurants
   },
