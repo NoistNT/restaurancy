@@ -25,12 +25,13 @@ const api = {
       .from('restaurants')
       .select('*')
       .eq('id', id)
+      .single()
 
     if (error instanceof Error || !restaurant) {
       throw new Error(`Restaurant with id ${id} not found: ${error?.message}`)
     }
 
-    return restaurant[0]
+    return restaurant
   },
   search: async (name: string): Promise<Restaurant[]> => {
     const { data, error } = await supabase
