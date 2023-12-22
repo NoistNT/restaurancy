@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 import api from '@/api'
 
-import Card from '../../components/card'
+import Card from '../../components/ui/RestaurantCard/card'
 
 export async function generateMetadata({
   params: { id }
@@ -19,7 +19,7 @@ export async function generateMetadata({
 }
 
 export async function generateStaticParams() {
-  const restaurants = await api.list()
+  const restaurants = await api.list('')
 
   return restaurants.map((restaurant) => ({
     id: restaurant.id

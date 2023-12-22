@@ -3,9 +3,9 @@
 import { useSession } from 'next-auth/react'
 import Link from 'next/link'
 
+import SignInButton from './signInButton'
+import SignOutButton from './signOutButton'
 import SearchBox from './searchBox'
-import SignInButton from './ui/signInButton'
-import SignOutButton from './ui/signOutButton'
 
 export default function NavBar() {
   const { data: session } = useSession()
