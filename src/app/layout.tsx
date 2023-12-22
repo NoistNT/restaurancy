@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 
 import './globals.css'
-import NavBar from '@/components/NavBar'
+import NavBar from '@/components/ui/NavBar/navBar'
 
 import Footer from '../components/footer'
 
@@ -23,7 +23,7 @@ export default function RootLayout({
       <body>
         <Providers>
           <NavBar />
-          <main className="m-auto grid min-h-screen max-w-[1500px] grid-rows-[auto,1fr,auto] px-4 py-8">
+          <main className="m-auto grid min-h-[85vh] max-w-[1500px] grid-rows-[auto,1fr,auto] px-4 py-8">
             {children}
           </main>
           <Footer />
