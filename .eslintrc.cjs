@@ -13,6 +13,7 @@ module.exports = {
   ],
   parserOptions: {
     ecmaVersion: 'latest',
+    sourceType: 'module',
     project
   },
   settings: {
@@ -72,10 +73,7 @@ module.exports = {
       }
     ],
     'no-console': 'warn',
-    'react/prop-types': 'off',
     'react/jsx-uses-react': 'off',
-    'react/react-in-jsx-scope': 'off',
-    'react/self-closing-comp': 'warn',
     'react/jsx-sort-props': [
       'warn',
       {
@@ -85,20 +83,18 @@ module.exports = {
         reservedFirst: true
       }
     ],
+    'react/prop-types': 'off',
+    'react/react-in-jsx-scope': 'off',
+    'react/self-closing-comp': 'warn',
+    '@typescript-eslint/consistent-type-imports': 'off',
+    '@typescript-eslint/explicit-function-return-type': 'off',
+    '@typescript-eslint/naming-convention': 'off',
+    '@typescript-eslint/no-confusing-void-expression': 'off',
+    '@typescript-eslint/no-floating-promises': 'off',
     '@typescript-eslint/no-misused-promises': 'off',
-    '@typescript-eslint/restrict-template-expressions': 'off',
     '@typescript-eslint/no-non-null-assertion': 'off',
     '@typescript-eslint/no-shadow': 'off',
-    '@typescript-eslint/explicit-function-return-type': 'off',
-    '@typescript-eslint/require-await': 'off',
-    '@typescript-eslint/no-floating-promises': 'off',
-    '@typescript-eslint/no-confusing-void-expression': 'off',
     '@typescript-eslint/no-unnecessary-condition': 'off',
-    '@typescript-eslint/no-unsafe-assignment': 'off',
-    '@typescript-eslint/no-unsafe-argument': 'off',
-    '@typescript-eslint/no-unsafe-call': 'off',
-    '@typescript-eslint/no-unsafe-member-access': 'off',
-    '@typescript-eslint/no-unsafe-return': 'off',
     '@typescript-eslint/no-unused-vars': [
       'warn',
       {
@@ -107,13 +103,12 @@ module.exports = {
         argsIgnorePattern: '^_.*?$'
       }
     ],
-    '@typescript-eslint/consistent-type-imports': [
-      'warn',
-      { prefer: 'type-imports' }
-    ],
+    '@typescript-eslint/restrict-template-expressions': 'off',
+    '@typescript-eslint/require-await': 'off',
     '@typescript-eslint/unbound-method': 'off',
     '@next/next/no-img-element': 'off',
-    'jsx-a11y/no-static-element-interactions': 'off',
-    'jsx-a11y/click-events-have-key-events': 'off'
+    'jsx-a11y/click-events-have-key-events': 'off',
+    'jsx-a11y/heading-has-content': 'off',
+    'jsx-a11y/no-static-element-interactions': 'off'
   }
 }
