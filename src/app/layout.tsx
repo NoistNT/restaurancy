@@ -1,11 +1,10 @@
 import type { Metadata } from 'next'
 
-import './globals.css'
+import Footer from '@/components/footer'
 import NavBar from '@/components/ui/NavBar/navBar'
 
-import Footer from '../components/footer'
-
 import Providers from './Providers'
+import './globals.css'
 
 export const metadata: Metadata = {
   title: 'Restaurancy',

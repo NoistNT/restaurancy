@@ -3,14 +3,14 @@
 import { useState } from 'react'
 
 export default function FavouriteButton({ id }: { id: string }) {
-  const [isFavourite, setIsFavourite] = useState(
-    () => window.localStorage.getItem('favourites')?.includes(id)
+  const [isFavourite, setIsFavourite] = useState(() =>
+    window.localStorage.getItem('favourites')?.includes(id)
   )
 
   const toggleFavourite = () => {
     const favourites = JSON.parse(
-      window.localStorage.getItem('favourites') || '[]'
-    )
+      window.localStorage.getItem('favourites') ?? '[]'
+    ) as string[]
 
     if (isFavourite) {
       favourites.splice(favourites.indexOf(id), 1)
