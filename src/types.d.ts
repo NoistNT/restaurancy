@@ -7,3 +7,8 @@ export interface Restaurant {
   score: number
   ratings: number
 }
+
+export interface RestaurantSingle {
+  data: Restaurant
+  error: Error | null
+}

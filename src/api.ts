@@ -1,14 +1,10 @@
-import type { Restaurant } from './types'
+import type { Restaurant, RestaurantSingle } from './types'
 
-import supabase from './app/api/supabase'
+import supabase from '@/app/api/supabase'
 
 const api = {
   list: async (name: string): Promise<Restaurant[]> => {
-    if (name) {
-      const restaurants = await api.search(name)
-
-      return restaurants
-    }
+    if (name) return await api.search(name)
 
     const { data, error } = await supabase.from('restaurants').select('*')
 
@@ -20,12 +16,13 @@ const api = {
 
     return restaurants
   },
+
   fetch: async (id: Restaurant['id']): Promise<Restaurant> => {
-    const { data: restaurant, error } = await supabase
+    const { data: restaurant, error } = (await supabase
       .from('restaurants')
       .select('*')
       .eq('id', id)
-      .single()
+      .single()) as RestaurantSingle
 
     if (error instanceof Error || !restaurant) {
       throw new Error(`Restaurant with id ${id} not found: ${error?.message}`)
@@ -33,6 +30,7 @@ const api = {
 
     return restaurant
   },
+
   search: async (name: string): Promise<Restaurant[]> => {
     const { data, error } = await supabase
       .from('restaurants')
@@ -45,9 +43,7 @@ const api = {
       )
     }
 
-    const restaurants = data as Restaurant[]
-
-    return restaurants
+    return data as Restaurant[]
   }
 }
 
