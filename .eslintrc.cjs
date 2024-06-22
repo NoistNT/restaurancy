@@ -17,11 +17,7 @@ module.exports = {
     project
   },
   settings: {
-    'import/resolver': {
-      typescript: {
-        project
-      }
-    }
+    'import/resolver': { typescript: { project } }
   },
   rules: {
     'prettier/prettier': [
